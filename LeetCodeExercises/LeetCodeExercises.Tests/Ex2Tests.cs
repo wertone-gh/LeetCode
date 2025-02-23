@@ -1,4 +1,8 @@
+#region
+
 using Xunit;
+
+#endregion
 
 namespace LeetCodeExercises.Tests;
 
@@ -14,11 +18,13 @@ public class Ex2Tests
         // Act
         var list1 = new Ex2.ListNode(l1[0], new Ex2.ListNode());
         var currentNodeL1 = list1.next;
-        for (int i = 1; i < l1.Length; i++)
+        for (var i = 1; i < l1.Length; i++)
         {
             currentNodeL1.val = l1[i];
             if (i == l1.Length - 1)
+            {
                 break;
+            }
 
             currentNodeL1.next = new Ex2.ListNode();
             currentNodeL1 = currentNodeL1.next;
@@ -26,11 +32,13 @@ public class Ex2Tests
 
         var list2 = new Ex2.ListNode(l2[0], new Ex2.ListNode());
         var currentNodeL2 = list2.next;
-        for (int i = 1; i < l2.Length; i++)
+        for (var i = 1; i < l2.Length; i++)
         {
             currentNodeL2.val = l2[i];
             if (i == l2.Length - 1)
+            {
                 break;
+            }
 
             currentNodeL2.next = new Ex2.ListNode();
             currentNodeL2 = currentNodeL2.next;
@@ -63,7 +71,7 @@ public class Ex2Tests
             {
                 5,
                 6,
-                4,
+                4
             },
             new[]
             {

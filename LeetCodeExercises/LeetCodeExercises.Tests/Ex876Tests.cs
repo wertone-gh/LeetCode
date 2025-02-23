@@ -1,4 +1,8 @@
+#region
+
 using Xunit;
+
+#endregion
 
 namespace LeetCodeExercises.Tests;
 
@@ -14,11 +18,13 @@ public class Ex876Tests
         // Act
         var head = new Ex876.ListNode(input[0], new Ex876.ListNode());
         var currentNode = head.next;
-        for (int i = 1; i < input.Length; i++)
+        for (var i = 1; i < input.Length; i++)
         {
             currentNode.val = input[i];
             if (i == input.Length - 1)
+            {
                 break;
+            }
 
             currentNode.next = new Ex876.ListNode();
             currentNode = currentNode.next;
