@@ -2,33 +2,30 @@ namespace LeetCodeExercises;
 
 public class Ex3
 {
-    private readonly Dictionary<char, int> _chars = new();
-
     public int LengthOfLongestSubstring(string input)
     {
-        if (input.Length is 0 or 1)
-        {
-            return input.Length;
-        }
+        int n = input.Length;
+        int maxLength = 0;
+        int left = 0;
+        Dictionary<char, int> charIndexMap = new Dictionary<char, int>();
 
-        var longestSubstring = 0;
-        var currentSubstring = 0;
-        for (var i = 0; i < input.Length; i++)
+        for (int right = 0; right < n; right++)
         {
-            if (_chars.ContainsKey(input[i]))
+            char currentChar = input[right];
+
+            // If we find a repeating character, move the left pointer
+            if (charIndexMap.ContainsKey(currentChar))
             {
-                currentSubstring = i - _chars[input[i]];
-                _chars.Remove(input[i]);
-            }
-            else
-            {
-                currentSubstring++;
+                left = Math.Max(left, charIndexMap[currentChar] + 1);
             }
 
-            longestSubstring = Math.Max(longestSubstring, currentSubstring);
-            _chars.Add(input[i], i);
+            // Update the last seen index of the current character
+            charIndexMap[currentChar] = right;
+
+            // Calculate the window size and update the max length
+            maxLength = Math.Max(maxLength, right - left + 1);
         }
 
-        return longestSubstring;
+        return maxLength;
     }
 }
