@@ -6,17 +6,17 @@ using Xunit;
 
 namespace LeetCodeExercises.Tests;
 
-public class Ex4Tests
+public class Ex7Tests
 {
     [Theory]
     [MemberData(nameof(TestData))]
-    public void Test(int[] nums1, int[] nums2, double expectedResult)
+    public void Test(int input, int expectedResult)
     {
         // Arrange
-        var ex = new Ex4();
+        var ex = new Ex7();
 
         // Act
-        var result = ex.FindMedianSortedArrays(nums1, nums2);
+        var result = ex.Reverse(input);
 
         // Assert
         Assert.Equal(expectedResult, result);
@@ -26,23 +26,20 @@ public class Ex4Tests
     {
         yield return
         [
-            new[] { 1, 3 },
-            new[] { 2 },
-            2.0
+            123,
+            321
         ];
 
         yield return
         [
-            new[] { 1, 2 },
-            new[] { 3, 4 },
-            2.5
+            -123,
+            -321
         ];
 
         yield return
         [
-            Array.Empty<int>(),
-            new[] { 1 },
-            1
+            120,
+            21
         ];
     }
 }

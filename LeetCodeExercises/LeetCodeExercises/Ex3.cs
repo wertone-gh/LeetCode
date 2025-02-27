@@ -4,14 +4,14 @@ public class Ex3
 {
     public int LengthOfLongestSubstring(string input)
     {
-        int n = input.Length;
-        int maxLength = 0;
-        int left = 0;
-        Dictionary<char, int> charIndexMap = new Dictionary<char, int>();
+        var n = input.Length;
+        var maxLength = 0;
+        var left = 0;
+        var charIndexMap = new Dictionary<char, int>();
 
-        for (int right = 0; right < n; right++)
+        for (var right = 0; right < n; right++)
         {
-            char currentChar = input[right];
+            var currentChar = input[right];
 
             // If we find a repeating character, move the left pointer
             if (charIndexMap.ContainsKey(currentChar))

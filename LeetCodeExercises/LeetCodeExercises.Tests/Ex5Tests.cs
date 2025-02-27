@@ -1,4 +1,8 @@
+#region
+
 using Xunit;
+
+#endregion
 
 namespace LeetCodeExercises.Tests;
 
@@ -23,7 +27,7 @@ public class Ex5Tests
         yield return
         [
             "babad",
-            "bab"
+            "aba"
         ];
 
         yield return

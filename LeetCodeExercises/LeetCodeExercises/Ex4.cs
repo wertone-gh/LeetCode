@@ -10,7 +10,7 @@ public class Ex4
         var resultArray = new List<int>(resultLength);
         var array1Index = 0;
         var array2Index = 0;
-        for (int counter = 0; counter < resultLength; counter++)
+        for (var counter = 0; counter < resultLength; counter++)
         {
             if (array1Index >= nums1.Length)
             {
