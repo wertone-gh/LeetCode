@@ -1,4 +1,8 @@
+#region
+
 using Xunit;
+
+#endregion
 
 namespace LeetCodeExercises.Tests;
 
@@ -30,6 +34,12 @@ public class Ex11Tests
         [
             new[] { 1, 1 },
             1
+        ];
+
+        yield return
+        [
+            new[] { 0, 2 },
+            0
         ];
     }
 }
