@@ -4,27 +4,46 @@ public class Ex15
 {
     public IList<IList<int>> ThreeSum(int[] nums)
     {
-        var result = new HashSet<List<int>>();
-        for (var i = 0; i < nums.Length; i++)
+        Array.Sort(nums);
+        var result = new List<IList<int>>();
+        for (var i = 0; i < nums.Length - 2; i++)
         {
-            var firstNumber = nums[i];
-            for (var j = i + 1; j < nums.Length; j++)
+            if (i > 0 && nums[i] == nums[i - 1])
             {
-                var secondNumber = nums[j];
-                for (var k = j + 1; k < nums.Length; k++)
+                continue;
+            }
+
+            int left = i + 1, right = nums.Length - 1;
+            while (left < right)
+            {
+                var total = nums[i] + nums[left] + nums[right];
+                if (total == 0)
                 {
-                    var thirdNumber = nums[k];
-                    if (firstNumber + secondNumber + thirdNumber == 0)
+                    result.Add(new List<int> { nums[i], nums[left], nums[right] });
+                    while (left < right && nums[left] == nums[left + 1])
                     {
-                        List<int> temp = [firstNumber, secondNumber, thirdNumber];
-                        temp.Sort();
-                        result.Add(temp);
+                        left++;
                     }
+
+                    while (left < right && nums[right] == nums[right - 1])
+                    {
+                        right--;
+                    }
+
+                    left++;
+                    right--;
+                }
+                else if (total < 0)
+                {
+                    left++;
+                }
+                else
+                {
+                    right--;
                 }
             }
         }
 
-        return result.Select(x => (IList<int>)x.ToList())
-            .ToList();
+        return result;
     }
 }
