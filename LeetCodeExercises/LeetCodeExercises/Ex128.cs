@@ -1,33 +1,33 @@
+using System.Collections.Immutable;
+
 namespace LeetCodeExercises;
 
 public class Ex128
 {
     public int LongestConsecutive(int[] nums)
     {
-        Array.Sort(nums);
-
-        if (nums.Length is 0 or 1)
+        var hashSet = nums.ToHashSet();
+        var hashSetCount = hashSet.Count;
+        if (hashSetCount is 0 or 1)
         {
-            return nums.Length;
+            return hashSetCount;
         }
 
-        var result = 1;
-        for (var i = 1; i < nums.Length; i++)
+        var result = 0;
+        foreach (var num in hashSet)
         {
-            var current = nums[i];
-            var prev = nums[i - 1];
-
-            if (current == prev)
+            if (!hashSet.Contains(num - 1))
             {
-                continue;
-            }
+                var count = 1;
+                var currentNum = num;
+                while (hashSet.Contains(currentNum + 1))
+                {
+                    count++;
+                    currentNum++;
+                }
 
-            if (current != prev + 1)
-            {
-                break;
+                result = Math.Max(result, count);
             }
-
-            result++;
         }
 
         return result;
