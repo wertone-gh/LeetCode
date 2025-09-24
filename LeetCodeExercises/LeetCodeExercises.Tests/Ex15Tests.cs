@@ -1,4 +1,5 @@
 using Xunit;
+using System.Linq;
 
 namespace LeetCodeExercises.Tests;
 
@@ -14,8 +15,20 @@ public class Ex15Tests
         // Act
         var result = ex.ThreeSum(input);
 
-        // Assert
-        Assert.Equal(expectedResult, result);
+        // Assert (porównanie niezależne od kolejności tripletów i ich kolejności wewnętrznej)
+        var normalizedExpected = expectedResult
+            .Select(t => t.OrderBy(x => x).ToArray())
+            .OrderBy(t => t[0]).ThenBy(t => t[1]).ThenBy(t => t[2])
+            .Select(t => string.Join(",", t))
+            .ToList();
+
+        var normalizedActual = result
+            .Select(t => t.OrderBy(x => x).ToArray())
+            .OrderBy(t => t[0]).ThenBy(t => t[1]).ThenBy(t => t[2])
+            .Select(t => string.Join(",", t))
+            .ToList();
+
+        Assert.Equal(normalizedExpected, normalizedActual);
     }
 
     public static IEnumerable<object[]> TestData()
@@ -33,13 +46,11 @@ public class Ex15Tests
             }
         ];
 
+        // brak rozwiązania -> spodziewamy się pustej listy
         yield return
         [
             new[] { 0, 1, 1 },
-            new[]
-            {
-                new int[] { }
-            }
+            new int[][] { }
         ];
 
         yield return
